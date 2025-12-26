@@ -1,13 +1,12 @@
+[build-system]
+requires = ["setuptools >= 40.6.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
-
 name = "axicli"
-
 version = "3.9.7"
-
 description = "AxiDraw CLI and Python API"
-
 readme = "README.txt"
-
 requires-python = ">=3.8"
 
 authors = [
@@ -29,8 +28,9 @@ classifiers = [
   "Programming Language :: Python :: 3 :: Only",
 ]
 
+
 dependencies = [
-  "axidrawinternal @ file:///Users/flo/Code/axi_control/axidraw/prebuilt_dependencies/axidrawinternal-3.9.6-py2.py3-none-any.whl",
+  "axidrawinternal==3.9.6",
   "certifi==2023.7.22",
   "charset-normalizer==2.0.7",
   "idna==3.3",
@@ -43,17 +43,6 @@ dependencies = [
   "urllib3==1.26.18",
 ]
 
-[project.scripts]
-axicli = "axicli.__main__:axidraw_CLI"
-htacli = "axicli.__main__:hta_CLI"
-
-[project.urls] # Optional
-"CLI API documentation" = "https://axidraw.com/doc/cli_api/'"
-"Python API documentation" = "https://axidraw.com/doc/cli_api/"
-"About AxiDraw" = "https://axidraw.com/"
-"A project by" = "https://shop.evilmadscientist.com"
-
-
 [project.optional-dependencies]
 dev = [
   "axidrawinternal>=3.0.0",
@@ -64,10 +53,18 @@ dev = [
 test = ["coverage", "mock", "pyfakefs"]
 # hershey = ["hersheyadvanced"] # see Installation instructions
 
+[tool.uv.sources]
+axidrawinternal = { path = "prebuilt_dependencies/axidrawinternal-3.9.6-py2.py3-none-any.whl" }
 
-[build-system]
-requires = ["setuptools >= 40.6.0"]
-build-backend = "setuptools.build_meta"
+[project.scripts]
+axicli = "axicli.__main__:axidraw_CLI"
+htacli = "axicli.__main__:hta_CLI"
 
 [tool.setuptools.packages.find]
 include = ["axicli", "axicli.*", "pyaxidraw", "pyaxidraw.*"]
+
+[project.urls] # Optional
+"CLI API documentation" = "https://axidraw.com/doc/cli_api/'"
+"Python API documentation" = "https://axidraw.com/doc/cli_api/"
+"About AxiDraw" = "https://axidraw.com/"
+"A project by" = "https://shop.evilmadscientist.com"
